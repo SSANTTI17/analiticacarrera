@@ -1,0 +1,301 @@
+/* Dark-centered theme */
+:root {
+  --bg-gradient: linear-gradient(180deg, #071125, #0b1220);
+  --muted: #9aa6bf;
+  --accent: #8b5cf6;
+  --accent-2: #0ea5a4;
+  --success: #34d399;
+  --danger: #fb7185;
+  --border: rgba(255, 255, 255, 0.04);
+  background-color: transparent;
+}
+
+/* Ensure the dark gradient covers the whole viewport and is fixed so
+   rendering artifacts from UA/system UI don't show a light strip */
+html,
+body,
+#root {
+  height: 100%;
+  background: var(--bg-gradient) !important;
+  background-attachment: fixed;
+  background-size: cover;
+}
+body {
+  margin: 0;
+  display: block; /* prevent unrelated centering from index.css */
+  font-family: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    Roboto, "Helvetica Neue", Arial;
+  color: #e6eef8;
+  min-height: 100vh;
+}
+
+.app-root {
+  width: 100%;
+  max-width: 1200px; /* slightly wider to use more horizontal space */
+  margin: 0 auto;
+  padding: 28px;
+  padding-bottom: 56px;
+  box-sizing: border-box;
+}
+
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 18px;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand .logo-box {
+  width: 56px;
+  height: 56px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 800;
+  font-size: 1.05rem;
+}
+.brand .title {
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.brand .subtitle {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.overview-card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-radius: 12px;
+  padding: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  border: 1px solid var(--border);
+}
+.overview-card .stats {
+  display: flex;
+  flex-direction: column;
+}
+.overview-card .label {
+  color: var(--muted);
+  font-weight: 600;
+}
+.overview-card .value {
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.sections-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+  margin-top: 22px;
+  align-items: start;
+}
+.card {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.02),
+    rgba(255, 255, 255, 0.01)
+  );
+  border-radius: 12px;
+  padding: 16px;
+  border: 1px solid var(--border);
+}
+.card h3 {
+  margin: 0 0 8px 0;
+}
+.year-stats {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+/* Header layout for each year: keep title and right-aligned stats adaptive */
+.year-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.electivas-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.year-stats-label {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.progress-container {
+  min-width: 120px;
+  max-width: 220px;
+}
+
+/* Entrance animation and hover lift for cards */
+.card {
+  animation: card-enter 440ms cubic-bezier(0.2, 0.9, 0.3, 1) both;
+  transition: box-shadow 180ms ease, transform 180ms ease;
+}
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(2, 6, 23, 0.12);
+}
+@keyframes card-enter {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.progress-wrap {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 999px;
+  padding: 6px;
+}
+.progress-bar {
+  height: 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  transition: width 360ms ease;
+}
+
+.courses-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 8px;
+  table-layout: fixed;
+}
+.courses-table th {
+  text-align: left;
+  font-size: 0.85rem;
+  color: var(--muted);
+  padding: 10px 8px;
+}
+.courses-table td {
+  padding: 10px 8px;
+  border-top: 1px solid rgba(255, 255, 255, 0.02);
+  color: #dfe9fb;
+  word-break: break-word;
+  overflow-wrap: anywhere; /* prevent content overflow */
+}
+.courses-table tr:hover td {
+  background: linear-gradient(90deg, rgba(139, 92, 246, 0.04), transparent);
+}
+
+.badge {
+  display: inline-block;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+}
+.badge.passed {
+  background: rgba(52, 211, 153, 0.12);
+  color: var(--success);
+  font-weight: 700;
+}
+.badge.failed {
+  background: rgba(251, 113, 133, 0.06);
+  color: var(--danger);
+  font-weight: 700;
+}
+
+/* Status-specific badges */
+/* ROJO - No puede cursar */
+.badge.no-puede-cursar {
+  background-color: #5c1a1a;
+  color: #ff9b9b;
+}
+
+/* AZUL - Puede cursar */
+.badge.puede-cursar {
+  background-color: #0b2f66;
+  color: #77b4ff;
+}
+
+/* CELESTE - Cursando */
+.badge.cursando {
+  background-color: #0b556a;
+  color: #a5ecff;
+}
+
+/* AMARILLO - Regular */
+.badge.regular {
+  background-color: #8a6d0a;
+  color: #fff6a1;
+}
+
+/* VERDE CLARO - Promocionado */
+.badge.promocionado {
+  background-color: #21613c;
+  color: #9ef7b3;
+}
+
+/* VERDE OSCURO - Aprobado */
+.badge.aprobado {
+  background-color: #063a28;
+  color: #6fff8f;
+}
+
+/* small icon next to code */
+.code-with-icon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #dfe9fb;
+}
+.code-with-icon svg {
+  width: 14px;
+  height: 14px;
+  opacity: 0.95;
+  flex-shrink: 0;
+}
+
+footer {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 20px;
+  text-align: center;
+}
+
+/* Keep single column layout: years stacked vertically and cards span full width */
+
+.sections-grid {
+  grid-template-columns: 1fr;
+}
+.card {
+  padding: 18px;
+}
+
+@media (max-width: 560px) {
+  .progress-wrap {
+    width: 160px;
+  }
+  .brand .title {
+    font-size: 1rem;
+  }
+}
