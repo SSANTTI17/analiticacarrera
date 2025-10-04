@@ -212,6 +212,8 @@ body {
   padding: 6px 10px;
   border-radius: 999px;
   font-size: 0.82rem;
+  text-align: center;
+  min-width: 110px;
 }
 .badge.passed {
   background: rgba(52, 211, 153, 0.12);
@@ -223,39 +225,26 @@ body {
   color: var(--danger);
   font-weight: 700;
 }
-
-/* Status-specific badges */
-/* ROJO - No puede cursar */
 .badge.no-puede-cursar {
   background-color: #5c1a1a;
   color: #ff9b9b;
 }
-
-/* AZUL - Puede cursar */
 .badge.puede-cursar {
   background-color: #0b2f66;
   color: #77b4ff;
 }
-
-/* CELESTE - Cursando */
 .badge.cursando {
   background-color: #0b556a;
   color: #a5ecff;
 }
-
-/* AMARILLO - Regular */
 .badge.regular {
   background-color: #8a6d0a;
   color: #fff6a1;
 }
-
-/* VERDE CLARO - Promocionado */
 .badge.promocionado {
   background-color: #21613c;
   color: #9ef7b3;
 }
-
-/* VERDE OSCURO - Aprobado */
 .badge.aprobado {
   background-color: #063a28;
   color: #6fff8f;
